@@ -19,8 +19,10 @@ public class JsonHandler implements InOutFiles<DataModel> {
 
     }
 
-    private Path root = Paths.get("files");
-    public String jsonfile = "resource.json";
+    ObjectMapper objmap = new ObjectMapper();
+    ObjectWriter writer = this.objmap.writer(new DefaultPrettyPrinter());
+
+    private Path root = Paths.get("files/resource.json");
 
     @Override
     public void init() {
@@ -34,16 +36,14 @@ public class JsonHandler implements InOutFiles<DataModel> {
     }
 
     @Override
-    public void loadFile(String namefile) {
+    public void search(String namefile) {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void saveFile(String namefile, List<DataModel> data) {
+    public void saveFile(List<DataModel> data) {
         // List<DataModel> dataCollect = new ArrayList<>();
-
-        root = root.resolve(namefile);
 
         System.out.println(root.toString());
         if (Files.notExists(root)) {
@@ -56,16 +56,13 @@ public class JsonHandler implements InOutFiles<DataModel> {
 
         try {
 
-            ObjectMapper objmap = new ObjectMapper();
-            ObjectWriter writer = objmap.writer(new DefaultPrettyPrinter());
-
             // read to file
-            List<DataModel> readValue = objmap.readValue(root.toFile(), new TypeReference<List<DataModel>>() {
+            List<DataModel> readValue = this.objmap.readValue(root.toFile(), new TypeReference<List<DataModel>>() {
             });
             readValue.addAll(data);
 
             // write to file
-            writer.writeValue(root.toFile(), readValue);
+            this.writer.writeValue(root.toFile(), readValue);
 
         } catch (IOException e) {
             System.err.println(e);
@@ -80,9 +77,22 @@ public class JsonHandler implements InOutFiles<DataModel> {
     }
 
     @Override
-    public void delete(String namefile) {
-        // TODO Auto-generated method stub
+    public void delete(String key) {
 
+        try {
+
+            List<DataModel> readValue = this.objmap.readValue(root.toFile(), new TypeReference<List<DataModel>>() {
+            });
+            // todo ini belum sempurna pada pencarian atau key select oke jangan lupa
+            // bangsat
+            List<DataModel> afterRemove = readValue.stream().filter(x -> !x.getCreater().equals(key)).toList();
+
+            this.writer.writeValue(root.toFile(), afterRemove);
+
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        // readValue.stream().dropWhile();
     }
 
 }

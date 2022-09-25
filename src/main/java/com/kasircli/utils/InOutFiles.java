@@ -6,12 +6,12 @@ public interface InOutFiles<T extends Object> {
 
     public void init();
 
-    public void loadFile(String namefile);
+    public void search(String key);
 
-    public void saveFile(String namefile, List<T> data);
+    public void saveFile(List<T> data);
 
     public void loadAllFile();
 
-    public void delete(String namefile);
+    public void delete(String key);
 
 }

@@ -2,6 +2,7 @@ package com.kasircli.services;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,10 @@ public class JsonHandlerTest {
 
     @Test
     public void testDelete() {
+        List<Integer> of = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9).stream().filter(x -> x.equals(3)).toList();
+        JsonHandler json = new JsonHandler();
 
+        json.delete("amar");
     }
 
     @Test
@@ -46,6 +50,6 @@ public class JsonHandlerTest {
 
         var jsonHandler = new JsonHandler();
         jsonHandler.init();
-        jsonHandler.saveFile("resource.json", List.of(new DataModel(1, "amar", 1, "amar")));
+        jsonHandler.saveFile(List.of(new DataModel(1, "amar", 1, "amar")));
     }
 }
