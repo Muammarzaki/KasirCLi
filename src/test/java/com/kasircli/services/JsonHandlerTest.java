@@ -1,10 +1,12 @@
-package com.kasircli.models.entity;
+package com.kasircli.services;
 
-import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.kasircli.utils.DataModel;
 
 public class JsonHandlerTest {
 
@@ -43,6 +45,7 @@ public class JsonHandlerTest {
         map.put("name", "amas");
 
         var jsonHandler = new JsonHandler();
-        jsonHandler.saveFile(Paths.get(jsonHandler.jsonfile), map);
+        jsonHandler.init();
+        jsonHandler.saveFile("resource.json", List.of(new DataModel(1, "amar", 1, "amar")));
     }
 }

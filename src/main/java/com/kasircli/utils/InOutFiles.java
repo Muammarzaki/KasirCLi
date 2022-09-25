@@ -1,14 +1,14 @@
 package com.kasircli.utils;
 
-import java.nio.file.Path;
+import java.util.List;
 
-public interface InOutFiles {
+public interface InOutFiles<T extends Object> {
 
     public void init();
 
     public void loadFile(String namefile);
 
-    public void saveFile(Path namefile, Object data);
+    public void saveFile(String namefile, List<T> data);
 
     public void loadAllFile();
 
