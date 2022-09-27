@@ -1,17 +1,42 @@
 package com.kasircli.utils;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface InOutFiles<T extends Object> {
 
+    /**
+     * make directory for files
+     */
     public void init();
 
-    public void search(String key);
+    /**
+     * search one data by key in file
+     * 
+     * @param key
+     * @return
+     */
+    public Optional<T> search(String key);
 
-    public void saveFile(List<T> data);
+    /**
+     * save files in file
+     * 
+     * @param data
+     */
+    public Boolean saveFile(List<T> data);
 
-    public void loadAllFile();
+    /**
+     * load all of data
+     * 
+     * @return
+     */
+    public List<T> loadAllFile();
 
-    public void delete(String key);
+    /**
+     * delete one data by key
+     * 
+     * @param key
+     */
+    public Boolean delete(String key);
 
 }

@@ -1,12 +1,15 @@
 package com.kasircli.services;
 
-import java.util.HashMap;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
-import com.kasircli.utils.DataModel;
+import com.kasircli.models.Product;
 
 public class JsonHandlerTest {
 
@@ -15,39 +18,40 @@ public class JsonHandlerTest {
     }
 
     @Test
+    @Order(5)
     public void testDelete() {
         JsonHandler json = new JsonHandler();
 
-        json.delete("amar");
+        json.delete("dyaul");
     }
 
     @Test
+    @Order(1)
     public void testInit() {
-
+        var jsonHandler = new JsonHandler();
+        jsonHandler.init();
     }
 
     @Test
+    @Order(4)
     public void testLoadAllFile() {
-
+        var jsonHandler = new JsonHandler();
+        assertNotNull(jsonHandler.loadAllFile());
     }
 
     @Test
-    public void testLoadFile() {
-
+    @Order(3)
+    public void testsearch() {
+        var jsonHandler = new JsonHandler();
+        assertNotNull(jsonHandler.search("ayam"));
     }
 
     @Test
-    public void testMain() {
-
-    }
-
-    @Test
+    @Order(2)
     public void testSaveFile() {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("name", "amas");
 
         var jsonHandler = new JsonHandler();
         jsonHandler.init();
-        jsonHandler.saveFile(List.of(new DataModel(1, "amar", 1, "amar")));
+        assertTrue(jsonHandler.saveFile(List.of(new Product("ayam", 2000, 10))));
     }
 }

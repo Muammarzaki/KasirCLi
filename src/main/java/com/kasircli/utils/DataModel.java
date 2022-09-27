@@ -13,6 +13,12 @@ public class DataModel {
     public DataModel() {
     }
 
+    public DataModel(String creater, String updater) {
+        this.creater = creater;
+        this.updater = updater;
+        
+    }
+
     public DataModel(int create, String creater, int update, String updater) {
         this.create = create;
         this.creater = creater;
