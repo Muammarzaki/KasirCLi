@@ -3,10 +3,15 @@ package com.kasircli.models;
 import java.util.UUID;
 
 public class Product {
+
     private String id;
+
     private String name;
+
     private Integer price;
+
     private Integer stock;
+
     private String description;
 
     public String getId() {
@@ -45,8 +50,9 @@ public class Product {
         return description;
     }
 
-    public void setDescription(String description) {
+    public Product setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public Product() {

@@ -1,4 +1,4 @@
-package com.kasircli.services;
+package com.kasircli.helpers;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,12 +19,8 @@ import com.kasircli.utils.InOutFiles;
 
 public class JsonHandler implements InOutFiles<Product> {
 
-    public static void main(String[] args) {
-
-    }
-
-    ObjectMapper objmap = new ObjectMapper();
-    ObjectWriter writer = this.objmap.writer(new DefaultPrettyPrinter());
+    private ObjectMapper objmap = new ObjectMapper();
+    private ObjectWriter writer = this.objmap.writer(new DefaultPrettyPrinter());
 
     private Path root = Paths.get("files/resource.json");
 
@@ -73,7 +69,6 @@ public class JsonHandler implements InOutFiles<Product> {
     public Boolean saveFile(List<Product> data) {
         // List<Product> dataCollect = new ArrayList<>();
 
-        System.out.println(root.toString());
         init();
         try {
 
@@ -102,7 +97,6 @@ public class JsonHandler implements InOutFiles<Product> {
      */
     @Override
     public List<Product> loadAllFile() {
-        // TODO Auto-generated method stub
         try {
             List<com.kasircli.models.Product> readValue = this.objmap.readValue(root.toFile(),
                     new TypeReference<List<Product>>() {

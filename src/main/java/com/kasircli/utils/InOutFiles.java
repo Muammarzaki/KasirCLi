@@ -1,5 +1,6 @@
 package com.kasircli.utils;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +30,7 @@ public interface InOutFiles<T extends Object> {
      * load all of data
      * 
      * @return
+     * @throws IOException
      */
     public List<T> loadAllFile();
 

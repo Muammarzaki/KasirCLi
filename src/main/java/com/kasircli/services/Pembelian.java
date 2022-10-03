@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
+import com.kasircli.helpers.JsonHandler;
 import com.kasircli.models.Product;
 
 public class Pembelian implements Runnable {
@@ -17,25 +16,20 @@ public class Pembelian implements Runnable {
     InputStreamReader inputReader = new InputStreamReader(System.in);
     BufferedReader reader = new BufferedReader(inputReader);
 
-    public static void main(String[] args) {
-        ExecutorService exe = Executors.newCachedThreadPool();
-        exe.submit(new Pembelian());
-        exe.shutdown();
-    }
-
     @Override
     public void run() {
+        // todo integer harus positif
         new JsonHandler().init();
         System.out.println("""
 
                 Pembelian
-                =============================""");
+                -----------------------------""");
 
         int inputUserPembelian = inputUserPembelian();
 
         System.out.printf("""
 
-                =============================
+                -----------------------------
                 total : Rp.%,d
 
                 """, inputUserPembelian);
@@ -57,7 +51,9 @@ public class Pembelian implements Runnable {
                 System.out.println("something wrong or your input not valid");
                 continue;
             }
-
+            if (userInput.equals("")) {
+                continue;
+            }
             if (userInput.equals("q")) {
                 break;
             }
@@ -107,5 +103,4 @@ public class Pembelian implements Runnable {
     public void changeProduck() {
         // todo this must complite oke
     }
-
 }

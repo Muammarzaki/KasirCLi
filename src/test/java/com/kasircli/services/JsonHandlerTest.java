@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
+import com.kasircli.helpers.JsonHandler;
 import com.kasircli.models.Product;
 
 public class JsonHandlerTest {
@@ -52,6 +53,6 @@ public class JsonHandlerTest {
 
         var jsonHandler = new JsonHandler();
         jsonHandler.init();
-        assertTrue(jsonHandler.saveFile(List.of(new Product("ayam", 2000, 10))));
+        assertTrue(jsonHandler.saveFile(List.of(new Product("kambing", 3000, 10))));
     }
 }
