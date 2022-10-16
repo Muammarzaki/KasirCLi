@@ -23,7 +23,7 @@ public class JsonHandlerTest {
     public void testDelete() {
         JsonHandler json = new JsonHandler();
 
-        json.delete("dyaul");
+        json.delete(json.search("ayam").get().getId());
     }
 
     @Test
@@ -53,6 +53,6 @@ public class JsonHandlerTest {
 
         var jsonHandler = new JsonHandler();
         jsonHandler.init();
-        assertTrue(jsonHandler.saveFile(List.of(new Product("kambing", 3000, 10))));
+        assertTrue(jsonHandler.saveFile(List.of(new Product("ayam", 3000, 10))));
     }
 }

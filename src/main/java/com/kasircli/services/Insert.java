@@ -21,23 +21,22 @@ public class Insert implements Runnable {
     }
 
     private void callInsertmanualy() {
-        while (true) {
-            try {
+        try {
+            System.out.print("how many data wanna insert? : ");
+            String input = reader.readLine();
+            input.trim();
+            if (input.equals("0") || input.equals("q")) {
 
-                System.out.print("how many data wanna insert? : ");
-                String input = reader.readLine().trim();
-                if (input.equals("0") || input.equals("q")) {
-                    break;
-                }
+            } else {
                 Integer round = Integer.valueOf(input);
                 System.out.println("================START===============");
                 for (int i = 0; i < round; i++) {
                     insertProductManual();
                 }
                 System.out.println("================END===============");
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
             }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -45,16 +44,20 @@ public class Insert implements Runnable {
         try {
 
             System.out.printf("Name :");
-            String productName = reader.readLine().trim().replace(" ", "-");
+            String productName = reader.readLine();
+            productName.trim().replace(" ", "-");
 
             System.out.print("Price:");
-            String productPrice = reader.readLine().trim();
+            String productPrice = reader.readLine();
+            productPrice.trim();
 
             System.out.print("Stock:");
-            String productStock = reader.readLine().trim();
+            String productStock = reader.readLine();
+            productStock.trim();
 
             System.out.print("deskripsi:");
-            String deks = reader.readLine().trim();
+            String deks = reader.readLine();
+            deks.trim();
 
             if (productName.equals("") || productPrice.equals("")) {
                 throw new NullPointerException("name & price cannot be null");

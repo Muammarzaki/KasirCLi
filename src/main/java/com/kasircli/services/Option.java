@@ -29,21 +29,19 @@ public class Option implements Runnable {
 
                 if (input.equals("1")) {
                     exe.submit(new Pembelian());
-
                 } else if (input.equals("2")) {
                     exe.submit(new Insert());
-
                 } else if (input.equals("3")) {
-                    // exe.submit();
+                    exe.submit(new Delete());
                 } else if (input.equals("4")) {
-                    // exe.submit();
+                    exe.submit(new Update());
                 } else {
                     System.err.println("---select one of option---");
+                    exe.submit(new Option());
                 }
-                exe.submit(new Option());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
 
         exe.shutdown();

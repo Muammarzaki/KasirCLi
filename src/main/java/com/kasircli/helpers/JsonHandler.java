@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.DatabindException;
@@ -81,13 +82,17 @@ public class JsonHandler implements InOutFiles<Product> {
             readValue.addAll(data);
 
             // write to file
-            this.writer.writeValue(root.toFile(), readValue);
+            writeToFile(readValue);
             return true;
         } catch (IOException e) {
             System.err.println(e);
             System.err.println("cant write at file");
             return false;
         }
+    }
+
+    public void writeToFile(List<Product> readValue) throws IOException, StreamWriteException, DatabindException {
+        this.writer.writeValue(root.toFile(), readValue);
     }
 
     /*
@@ -124,7 +129,7 @@ public class JsonHandler implements InOutFiles<Product> {
             // bangsat
             List<Product> afterRemove = readValue.stream().filter(x -> !x.getId().equals(key)).toList();
 
-            this.writer.writeValue(root.toFile(), afterRemove);
+            writeToFile(afterRemove);
 
             return true;
         } catch (Exception e) {
