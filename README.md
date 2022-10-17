@@ -6,8 +6,8 @@ Sistem kasir berbasis CLi
 
 ## Fitur
 
-- [ ] penyimpanan local
-- [ ] computasi pentotalan barang yang di beli
+- [x] penyimpanan local
+- [x] computasi pentotalan barang yang di beli
 - [ ] I/O berbasis cli dan mungkin akan di simpan di file.txt
 
 <br>
@@ -16,5 +16,19 @@ Sistem kasir berbasis CLi
 
 - Call Command
   ```bash
-   ~$ ksr
+  ~$ ksr
+  ```
+- untuk memanggil option 
+  ```bash
+  ~$ ksr start
+  ```
+- untuk memanggil insert data from csv 
+  ```bash
+  ~$ ksr insert  
+  ```
+
+<br>
+
+## Struktur app
+  ```
   ```
