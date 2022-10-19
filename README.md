@@ -12,7 +12,7 @@ Sistem kasir berbasis CLi
 
 <br>
 
-## How to use
+## cara pakai
 
 - Call Command
   ```bash
@@ -31,4 +31,17 @@ Sistem kasir berbasis CLi
 
 ## Struktur app
   ```
+  src
+   ├───main
+   └───java
+       └───com
+           └───kasircli
+               ├───controllers
+               ├───helpers
+               ├───models
+               │   └───dto
+               ├───services
+               └───utils
   ```
+## alur kerja
+![](documentation/uml/alur%20kerja.png)

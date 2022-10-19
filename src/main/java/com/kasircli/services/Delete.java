@@ -10,7 +10,7 @@ public class Delete implements Runnable {
     JsonHandler jsh = new JsonHandler();
     BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
 
-    public Boolean call() {
+    public Boolean deleteByName() {
 
         try {
             System.out.print("Product name for delete : ");
@@ -33,7 +33,7 @@ public class Delete implements Runnable {
     public void run() {
         Boolean isdelete = false;
         while (!isdelete) {
-            isdelete = call();
+            isdelete = deleteByName();
         }
     }
 
