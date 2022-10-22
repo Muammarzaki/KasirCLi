@@ -16,11 +16,11 @@ public class Insert implements Runnable {
 
     @Override
     public void run() {
-        callInsertmanualy();
+        callInsertManualy();
 
     }
 
-    private void callInsertmanualy() {
+    private void callInsertManualy() {
         try {
             System.out.print("how many data wanna insert? : ");
             String input = reader.readLine();

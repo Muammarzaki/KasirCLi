@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import com.kasircli.helpers.JsonHandler;
 import com.kasircli.models.Product;
-import com.kasircli.models.dto.ProductUpdate;
+import com.kasircli.models.ProductUpdate;
 
 public class Update implements Runnable {
     BufferedReader read = new BufferedReader(new InputStreamReader(System.in));

@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Properties;
 
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
@@ -22,20 +23,30 @@ public class JsonHandler implements InOutFiles<Product> {
 
     private ObjectMapper objmap = new ObjectMapper();
     private ObjectWriter writer = this.objmap.writer(new DefaultPrettyPrinter());
-
-    private Path root = Paths.get("files/resource.json");
+    Properties properties = new Properties();
+    private Path root;
 
     /*
      * (non-Javadoc)
      * 
      * @see com.kasircli.utils.InOutFiles#init()
      */
+    public JsonHandler() {
+        try {
+            this.properties.load(this.getClass().getClassLoader().getResourceAsStream("config.properties"));
+            setRoot(Paths.get(this.properties.getProperty("data.dir"))
+                    .resolve(this.properties.getProperty("data.product")));
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
     @Override
     public void init() {
         try {
-            if (Files.notExists(root)) {
+            if (Files.notExists(this.root)) {
                 Files.createDirectories(root.getParent());
-                Files.createFile(root);
+                Files.createFile(this.root);
                 this.writer.writeValue(root.toFile(), new ArrayList<>());
             }
         } catch (IOException e) {
@@ -68,7 +79,6 @@ public class JsonHandler implements InOutFiles<Product> {
      */
     @Override
     public Boolean saveFile(List<Product> data) {
-        // List<Product> dataCollect = new ArrayList<>();
 
         init();
         try {
@@ -137,6 +147,38 @@ public class JsonHandler implements InOutFiles<Product> {
             return false;
         }
         // readValue.stream().dropWhile();
+    }
+
+    public void setObjmap(ObjectMapper objmap) {
+        this.objmap = objmap;
+    }
+
+    public void setWriter(ObjectWriter writer) {
+        this.writer = writer;
+    }
+
+    public void setProperties(Properties properties) {
+        this.properties = properties;
+    }
+
+    public void setRoot(Path root) {
+        this.root = root;
+    }
+
+    public ObjectMapper getObjmap() {
+        return objmap;
+    }
+
+    public ObjectWriter getWriter() {
+        return writer;
+    }
+
+    public Properties getProperties() {
+        return properties;
+    }
+
+    public Path getRoot() {
+        return root;
     }
 
 }

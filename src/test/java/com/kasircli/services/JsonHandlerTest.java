@@ -13,45 +13,40 @@ import com.kasircli.helpers.JsonHandler;
 import com.kasircli.models.Product;
 
 public class JsonHandlerTest {
+    JsonHandler jsonHandler;
 
     @BeforeEach
     public void setUp() {
+        jsonHandler = new JsonHandler();
     }
 
     @Test
     @Order(5)
     public void testDelete() {
-        JsonHandler json = new JsonHandler();
-
-        json.delete(json.search("ayam").get().getId());
+        jsonHandler.delete(jsonHandler.search("ayam").get().getId());
     }
 
     @Test
     @Order(1)
     public void testInit() {
-        var jsonHandler = new JsonHandler();
         jsonHandler.init();
     }
 
     @Test
     @Order(4)
     public void testLoadAllFile() {
-        var jsonHandler = new JsonHandler();
         assertNotNull(jsonHandler.loadAllFile());
     }
 
     @Test
     @Order(3)
     public void testsearch() {
-        var jsonHandler = new JsonHandler();
         assertNotNull(jsonHandler.search("ayam"));
     }
 
     @Test
     @Order(2)
     public void testSaveFile() {
-
-        var jsonHandler = new JsonHandler();
         jsonHandler.init();
         assertTrue(jsonHandler.saveFile(List.of(new Product("ayam", 3000, 10))));
     }

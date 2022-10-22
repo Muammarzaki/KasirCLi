@@ -64,13 +64,13 @@ public class Pembelian implements Runnable {
                     price = searchPriceByName(split[0]) * Integer.valueOf(split[1]);
                     System.out.printf("=> Rp.%,d \n", price);
                     totalCount.add(price);
-                    isProductSame(produkBuying, split[0], price);
+                    isProductAlreadyGet(produkBuying, split[0], price);
 
                 } else {
                     price = searchPriceByName(userInput);
                     System.out.printf("=> Rp.%,d \n", price);
                     totalCount.add(price);
-                    isProductSame(produkBuying, userInput, price);
+                    isProductAlreadyGet(produkBuying, userInput, price);
                 }
 
             } catch (NoSuchElementException e) {
@@ -92,7 +92,18 @@ public class Pembelian implements Runnable {
         return search.getPrice();
     }
 
-    public void isProductSame(HashMap<String, Integer> tmpProduct, String key, Integer value) {
+    /**
+     * check apakah product telah di beli sekali jika telah dibeli
+     * maka harga bertambah dengan harga yang dibeli kedua kalinya
+     * 
+     * @param tmpProduct =>tempat produck akan di cek
+     * 
+     * @param key        =>nama product
+     * 
+     * @param value      =>harga product
+     * 
+     */
+    public void isProductAlreadyGet(HashMap<String, Integer> tmpProduct, String key, Integer value) {
         if (tmpProduct.containsKey(key)) {
             tmpProduct.put(key, tmpProduct.get(key) + value);
         } else {

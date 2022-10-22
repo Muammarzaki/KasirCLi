@@ -1,4 +1,4 @@
-package com.kasircli.models.dto;
+package com.kasircli.models;
 
 public class ProductUpdate {
 
